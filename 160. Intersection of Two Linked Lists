@@ -1,0 +1,33 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
+        ListNode A = headA, B = headB;
+        int lenA = 1, lenB = 1;
+        Map<ListNode, Integer> nodes = new HashMap<>();
+        while(A != null) {
+            nodes.put(A, 1);
+            A = A.next;
+        }
+        while(B != null) {
+                if(nodes.containsKey(B)) return B;
+            B = B.next;
+        }
+        // if(A == B) {
+        //     B = headB;
+        //     while(B != null) {
+        //         B = B.next;
+        //     }
+        // }
+        return null;
+    }
+}

@@ -1,0 +1,12 @@
+class Solution {
+    public int numWaterBottles(int numBottles, int numExchange) {
+        int remain, drink = numBottles;
+        while(numBottles >= numExchange) {
+            remain = numBottles % numExchange;
+            numBottles = (int) numBottles / numExchange;
+            drink += numBottles;
+            numBottles += remain; 
+        }
+        return drink;
+    }
+}

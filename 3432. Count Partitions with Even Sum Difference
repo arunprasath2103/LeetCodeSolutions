@@ -1,0 +1,13 @@
+class Solution {
+    public int countPartitions(int[] nums) {
+       int count = 0, sum = 0, temp = nums[0];
+       for(int i : nums) sum += i;
+        int len = nums.length;
+       for(int i = 1; i < len; i++) {
+        sum -= nums[i-1];
+        if(Math.abs(temp - sum) % 2 == 0) count++;
+        temp += nums[i];
+       }
+       return count;
+    }
+}

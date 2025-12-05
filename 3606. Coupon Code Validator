@@ -1,0 +1,46 @@
+class Solution {
+    public List<String> validateCoupons(String[] code, String[] businessLine, boolean[] isActive) {
+        Solution obj1 = new Solution();
+        List<String[]> validCode = new ArrayList<String[]>();
+        Map<String, Integer> priority = new HashMap<>();
+        priority.put("electronics", 0);
+        priority.put("grocery", 1);
+        priority.put("pharmacy", 2);
+        priority.put("restaurant", 3);
+        for (int i = 0; i < code.length; i++) {
+            String bl = businessLine[i];
+            if (isActive[i] == true && priority.containsKey(bl)) {
+                if (obj1.validity(code[i])) {
+                    validCode.add(new String[] {code[i], bl});
+                }
+            }
+        }
+        Collections.sort(validCode, (a, b) -> {
+            int cmp = Integer.compare(priority.get(a[1]), priority.get(b[1]));
+            if (cmp != 0){
+                return cmp;
+            }
+            return a[0].compareTo(b[0]);
+        });
+        List<String> result = new ArrayList<String>();
+        for(String[] i:validCode){
+            result.add(i[0]);
+        }
+        return result;
+    }
+
+    public boolean validity(String str) {
+        if (str.isEmpty()) {
+            return false;
+        }
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if ((ch >= 65 && ch <= 90) || (ch >= 97 && ch <= 122) || (ch >= 48 && ch <= 57) || ch == '_') {
+                continue;
+            } else {
+                return (false);
+            }
+        }
+        return (true);
+    }
+}

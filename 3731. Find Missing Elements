@@ -1,0 +1,15 @@
+class Solution {
+    public List<Integer> findMissingElements(int[] nums) {
+        Arrays.sort(nums);
+        int len = nums.length;
+        int pointer = 0;
+        List<Integer> missing = new ArrayList<>();
+        for(int i = nums[0]; i < nums[len-1]; i++){
+            if(i != nums[pointer])
+                missing.add(i);
+            else
+                pointer++;
+        }
+        return missing;
+    }
+}

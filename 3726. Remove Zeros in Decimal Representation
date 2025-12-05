@@ -1,0 +1,10 @@
+class Solution {
+    public long removeZeros(long n) {
+        char[] num = String.valueOf(n).toCharArray();
+        long result = 0;
+        for(char i : num){
+            if(i != '0') result = (result * 10) + Character.getNumericValue(i);
+        }
+        return result;
+    }
+}

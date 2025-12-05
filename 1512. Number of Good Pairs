@@ -1,0 +1,15 @@
+class Solution {
+    public int numIdenticalPairs(int[] nums) {
+        int[] freq = new int[101];
+        int count = 0;
+
+        for (int num : nums) {
+            System.out.println("fre --- >"+freq[num]);
+            count += freq[num];
+            System.out.println("count --- >"+count);
+            freq[num]++;
+        }
+        System.out.println(count);
+        return count;
+    }
+}

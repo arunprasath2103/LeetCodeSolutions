@@ -1,0 +1,22 @@
+class Solution {
+    public int[] pivotArray(int[] nums, int pivot) {
+        List<Integer> left = new ArrayList<>();
+        List<Integer> right = new ArrayList<>();
+        int index = 0;
+        for (int i : nums) {
+            if(i < pivot) left.add(i);
+            else if(i > pivot) right.add(i);
+        }
+
+        for(int i = 0; i < left.size(); i++) 
+            nums[index++] = left.get(i);
+        
+        for(int i = 0; i < (nums.length-(left.size()+right.size())); i++)
+            nums[index++] = pivot;
+        
+        for(int i = 0; i < right.size(); i++)
+            nums[index++] = right.get(i);
+        
+        return nums;
+    }
+}

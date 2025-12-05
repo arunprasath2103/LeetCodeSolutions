@@ -1,0 +1,10 @@
+class Solution {
+    public int maxDistinct(String s) {
+        int len = s.length();
+        HashMap<Character, Integer> ch = new HashMap<>();
+        for(int i = 0; i < len; i++) {
+           ch.putIfAbsent(s.charAt(i), 1);
+        }
+        return ch.size();
+    }
+}

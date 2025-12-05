@@ -1,0 +1,14 @@
+class Solution {
+    public int missingMultiple(int[] nums, int k) {
+        Arrays.sort(nums);
+        int i = 0, temp = k;
+        while(i < nums.length) {
+            if(nums[i] % k == 0) {
+                if(k < nums[i]) return k;
+                k += temp;
+            }
+            i++;
+        }
+        return k;
+    }
+}

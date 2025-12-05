@@ -1,0 +1,10 @@
+class Solution {
+    public String interpret(String command) {
+        while(command.contains("(") || command.contains(")") || command.contains("()")){
+            command = command.replace("()", "o");
+            command = command.replace(")", "");
+            command = command.replace("(", "");
+        }
+        return command;
+    }
+}

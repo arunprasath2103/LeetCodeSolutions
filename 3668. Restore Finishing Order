@@ -1,0 +1,21 @@
+class Solution {
+    public int[] recoverOrder(int[] order, int[] friends) {
+        Solution obj = new Solution();
+        int temp, index = 0;
+        for(int i = 0; i < order.length; i++) {
+            if(obj.position(friends, order[i])){
+                temp = order[index];
+                order[index] = order[i];
+                order[i] = temp;
+                index++;
+            }
+        }
+        return Arrays.copyOfRange(order, 0, index);
+    }
+    public boolean position(int[] friends, int nums) {
+        for(int i : friends) {
+            if(i == nums) return true;
+        }
+        return false;
+    }
+}

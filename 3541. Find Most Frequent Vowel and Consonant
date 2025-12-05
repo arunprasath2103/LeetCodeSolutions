@@ -1,0 +1,26 @@
+class Solution {
+    public int maxFreqSum(String s) {
+        char[] vowel = {'a', 'e', 'i', 'o', 'u'};
+        int count, vowelMax = 0;
+        for(char i : vowel) {
+            count = 0;
+            for(int j = 0; j < s.length(); j++){
+                if(i == s.charAt(j)) {count++;}
+            }
+            if(count > vowelMax) {vowelMax = count;}
+        }
+        int consMax = 0;
+        char ch;
+        for(int i = 0; i < s.length(); i++) {
+            ch = s.charAt(i);
+            if((ch != 'a' && ch != 'e' && ch != 'i' && ch != 'o' && ch != 'u')) {
+                count = 1;
+                for(int j = i+1; j < s.length(); j++) {
+                    if(ch == s.charAt(j)) {count++;}
+                }
+                if(count > consMax) {consMax = count;}
+            }
+        }
+        return vowelMax + consMax;
+    }
+}

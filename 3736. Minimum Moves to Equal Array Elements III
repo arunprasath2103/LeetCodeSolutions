@@ -1,0 +1,10 @@
+class Solution {
+    public int minMoves(int[] nums) {
+        Arrays.sort(nums);
+        int moves = 0, max = nums[nums.length-1];
+        for(int i : nums) {
+            moves += max - i;
+        }
+        return moves;
+    }
+}
