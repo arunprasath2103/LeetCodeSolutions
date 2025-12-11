@@ -1,0 +1,22 @@
+class Solution {
+    public int[] getSneakyNumbers(int[] nums) {
+        int sneaky[] = new int[2];
+        int len = nums.length, i = 0, j = 1, pos = 0;
+        while(i < len && pos != 2) {
+            if(j == len) {
+                i++;
+                j = i + 1;
+                continue;
+            }
+            if(nums[i] == nums[j]) {
+                sneaky[pos] = nums[i];
+                pos++;
+                i++;
+                j = i + 1;
+                continue;
+            }
+            j++;
+        }
+        return sneaky;
+    }
+}
