@@ -1,0 +1,40 @@
+class Solution {
+    public int orangesRotting(int[][] grid) {
+        int row = grid.length, col = grid[0].length;
+        int fresh = 0, min = 0;
+        int direction[][] = new int[][]{{1,0}, {-1,0}, {0, 1}, {0, -1}};
+        Queue<List<Integer>> queue = new LinkedList<>();
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                if(grid[i][j] == 1) fresh++;
+                else if(grid[i][j] == 2) queue.offer(Arrays.asList(i, j));
+            }
+        }
+        if(fresh == 0) return 0;
+        List<Integer> curr = new ArrayList<>();
+        boolean rotten;
+        int nr, nc, size;
+        while(!queue.isEmpty()) {
+            size = queue.size();
+            rotten = false;
+            for(int i = 0; i < size; i++) {
+                curr = queue.poll();
+                for(int[] dir : direction) {
+                    nr = curr.get(0) + dir[0];
+                    nc = curr.get(1) + dir[1];
+                    if(nr >= 0 && nr < row && nc >= 0 && nc < col && grid[nr][nc] == 1) {
+                        rotten = true;
+                        grid[nr][nc] = 2;
+                        queue.offer(Arrays.asList(nr, nc));
+                        fresh--;
+                    }
+                }
+            }
+            if(rotten) min++;
+            rotten = false;
+        }
+
+        if(fresh != 0) return -1;
+        return min;
+    }
+}
