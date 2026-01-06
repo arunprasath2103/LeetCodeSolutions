@@ -1,0 +1,14 @@
+class Solution {
+    public int mostWordsFound(String[] sentences) {
+        int curr, max = 0;
+        for(String s: sentences) {
+            curr = 0;
+            for(int i = s.length()-1; i >= 0; i--) {
+                if(' ' == s.charAt(i)) curr++;
+            }
+            curr++;
+            max = (max < curr) ? curr : max;
+        }
+        return max;
+    }
+}
